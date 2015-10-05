@@ -8,7 +8,9 @@ class Venue extends Eloquent {
 
 	public function business()
     {
-        return $this->belongsTo('Business');
+         $busniness = Business::find($this->business_id);
+
+        return $busniness;
     }
     
     public static function get_unique_city(){

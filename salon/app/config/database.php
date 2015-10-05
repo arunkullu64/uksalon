@@ -57,7 +57,7 @@ return array(
 			'host'      => 'localhost',
 			'database'  => 'justbkws_salon',
 			'username'  => 'justbkws_salon',
-			'password'  => '#HJO.-H]Nw!7',
+			'password'  => '',
 			'charset'   => 'utf8',
 			'collation' => 'utf8_unicode_ci',
 			'prefix'    => '',

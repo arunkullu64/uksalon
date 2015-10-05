@@ -33,12 +33,14 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
     
     public function profile()
     {
-        return $this->hasOne('Profile');
+        $profile = Profile::where('user_id', '=', $this->id)->first();
+        
+        return $profile;
     }
     
     public function role()
     {
-        return $this->belongsTo('Roles','role','rolRoleNo');
+        return $this->hasOne('Roles','role','rolRoleNo');
     }
 
 
@@ -53,7 +55,9 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
     public function business(){
 
         if($this->is_client()){
-            return $this->hasOne('Business');
+            $business = Business::where('user_id', '=', $this->id)->first();
+        
+            return $business;
         }
         else
         {

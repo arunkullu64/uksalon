@@ -50,7 +50,7 @@
           </div>
         </div>
       </div> 
-      @if(($group->services()->get()))
+      @if(!empty($group->services()))      
       <div class="row">
         <div class="col-md-12">
           <div class="menu-table">

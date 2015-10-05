@@ -654,7 +654,7 @@ if ( ! function_exists('object_get'))
 		if (is_null($key) || trim($key) == '') return $object;
 
 		foreach (explode('.', $key) as $segment)
-        {
+		{
 			if ( ! is_object($object) || ! isset($object->{$segment}))
 			{
 				return value($default);

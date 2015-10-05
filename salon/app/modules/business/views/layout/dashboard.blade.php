@@ -47,7 +47,7 @@
 
           <header class="main-header">
             <!-- Logo -->
-            <a href="{{url('/')}}" class="logo">
+            <a href="index-2.html" class="logo">
               <!-- mini logo for sidebar mini 50x50 pixels -->
               <span class="logo-mini"><b>U</b>K</span>
               <!-- logo for regular state and mobile devices -->
@@ -87,7 +87,7 @@
                           <li>
                             <a href="#">
                               <div class="pull-left">
-                                <img src="{{ Auth::user()->profile->profile_pic() }}" class="img-circle" alt="User Image">
+                                <img src="{{ URL::asset('assets/css/dist/img/user3-128x128.jpg')}}" class="img-circle" alt="User Image">
                               </div>
                               <h4>
                                 AdminLTE Design Team
@@ -99,7 +99,7 @@
                           <li>
                             <a href="#">
                               <div class="pull-left">
-                                <img src="{{ Auth::user()->profile->profile_pic() }}" class="img-circle" alt="User Image">
+                                <img src="{{ URL::asset('assets/css/dist/img/user4-128x128.jpg')}}" class="img-circle" alt="User Image">
                               </div>
                               <h4>
                                 Developers
@@ -144,16 +144,16 @@
                   <!-- User Account: style can be found in dropdown.less -->
                   <li class="dropdown user user-menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                      <img src="{{ Auth::user()->profile->profile_pic() }}" style="max-width: 160px" class="user-image" alt="User Image">
-                      <span class="hidden-xs">{{Auth::user()->full_name() }}</span>
+                      <img src="{{ URL::asset('assets/css/dist/img/user2-160x160.jpg')}}" class="user-image" alt="User Image">
+                      <span class="hidden-xs">Groovy Hair Salon</span>
                     </a>
                     <ul class="dropdown-menu">
                       <!-- User image -->
                       <li class="user-header">
-                        <img src="{{ Auth::user()->profile->profile_pic()}}" class="img-circle" alt="User Image">
+                        <img src="{{ URL::asset('assets/css/dist/img/user2-160x160.jpg')}}" class="img-circle" alt="User Image">
                         <p>
-                          {{Auth::user()->full_name()}}
-                          <small>Member since {{ date('M. Y', strtotime(Auth::user()->business->created_at)) }}</small>
+                          Groovy Hair Salon
+                          <small>Member since Nov. 2012</small>
                         </p>
                       </li>
                       <!-- Menu Body -->
@@ -182,10 +182,10 @@
               <!-- Sidebar user panel -->
               <div class="user-panel">
                 <div class="pull-left image">
-                  <img src="{{Auth::user()->profile->profile_pic()}}" class="img-circle" alt="User Image">
+                  <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
                 </div>
                 <div class="pull-left info">
-                  <p>{{Auth::user()->full_name() }}</p>
+                  <p>Groovy Hair Salon</p>
                   <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
                 </div>
               </div>
@@ -202,8 +202,8 @@
               <!-- sidebar menu: : style can be found in sidebar.less -->
               <ul class="sidebar-menu">
 
-                <li><img src="{{ Auth::user()->business->profile_pic() }}" class="img-responsive" alt=""/></li>
-                <li class="header">{{ Auth::user()->business->name }}</li>
+                <li><img src="{{ URL::asset('assets/images/bg03.jpg')}}" class="img-responsive" alt=""/></li>
+                <li class="header">Groovy Hair Salon</li>
                 <li class="active ">
                   <a href="index-2.html">
                     <i class="fa fa-home"></i> <span>Home</span> 
@@ -263,7 +263,7 @@
                     <li>
                       <a href="#"><i class="fa fa-circle-o"></i> Venue <i class="fa fa-angle-left pull-right"></i></a>
                       <ul class="treeview-menu">
-                        <li><a href="{{url('/business/dashboard/venue')}}"><i class="fa fa-circle-o"></i> Venu Details</a></li>
+                        <li><a href="venue-details.html"><i class="fa fa-circle-o"></i> Venu Details</a></li>
                         <li><a href="opening-hours.html"><i class="fa fa-circle-o"></i> Opening Hours</a></li>
                         <li><a href="policies.html"><i class="fa fa-circle-o"></i>Policies</a></li>
                   <!-- <li>

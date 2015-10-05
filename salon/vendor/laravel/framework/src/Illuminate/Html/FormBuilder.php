@@ -955,7 +955,7 @@ class FormBuilder {
 	 * @return string
 	 */
 	protected function transformKey($key)
-    {
+	{
 		return str_replace(array('.', '[]', '[', ']'), array('_', '', '.', ''), $key);
 	}
 

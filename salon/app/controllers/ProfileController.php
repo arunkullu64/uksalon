@@ -11,10 +11,12 @@ class ProfileController extends BaseController{
     public $layout = 'layouts.main';
     public function index()
     {
-        $data['user_id'] = Auth::user()->id;
-        $user = Auth::user();
+        $user_id = Auth::id();
+        //echo $user_id;
+        $data['user_id'] = $user_id;
+        $user = User::find($user_id);
         $data['user'] = $user;
-        $data['profile'] = $user->profile;
+        $data['profile'] = $user->profile();
        // $queries = DB::getQueryLog();
         //$last_query = end($queries);
        // echo "<pre>";print_r($queries);

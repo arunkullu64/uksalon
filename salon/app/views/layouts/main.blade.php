@@ -23,7 +23,6 @@
     <link href="{{ URL::asset('assets/css/font-awesome.min.css')}}" rel="stylesheet">
     <link href="{{ URL::asset('assets/css/style.css')}}" rel="stylesheet">
     <link href="{{ URL::asset('assets/css/responsive.css')}}" rel="stylesheet">
-
 </head>
 
 <body id="top">
@@ -217,7 +216,7 @@
                 </div>
                 <div class="modal-footer">
                     <p>Don't have account ? <a href="#modal-signup"  data-toggle="modal" data-target="#modal-signup">Sign up here.</a></p>
-                    <input type="submit" class="btn btn-warning btn-block btn-lg" value="Sign in">
+                    <input type="button" class="btn btn-warning btn-block btn-lg" value="Sign in">
                 </div>
             {{ Form::close() }}
         </div>
@@ -230,6 +229,8 @@
     <div class="modal-dialog modal-md">
         <div class="modal-content">
             <div class="modal-header">
+                <div class="alert alert-danger" style="display: none;" id="error_msg"></div>
+                <div class="alert alert-info" style="display: none;" id="success_msg"></div>
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                 <h4 class="modal-title">CREATE A  PROFILE</h4>
                 <p><em>Tell us a bit about yourself and we’ll set up your profile so you can post reviews, ask the UK Salon community questions, and book even faster next time.</em></p>
@@ -238,30 +239,30 @@
             <div class="modal-body">
                     <div class="col-md-6 col-sm-6 col-xs-6">
                         <div class="form-group">
-                            {{  Form::email("email", "",array("class"=>"form-control input-md", "placeholder"=>"Email" )) }}
+                            {{  Form::email("email", "",array("class"=>"form-control input-md","id" => "signup_email", "placeholder"=>"Email" )) }}
                         </div>
                         <div class="form-group">
-                            {{ Form::text('fname','',array("class"=>"form-control input-md", "placeholder"=>"First Name")); }}
+                            {{ Form::text('fname','',array("class"=>"form-control input-md","id" => "signup_fname", "placeholder"=>"First Name")); }}
                         </div>
                     </div>
 
                     <div class="col-md-6 col-sm-6 col-xs-6">
                         <div class="form-group">
-                            <input name="password" type="password" class="form-control input-md" placeholder="Password"/>
+                            <input name="password" value="" type="password" class="form-control input-md" id="signup_password" placeholder="Password"/>
                         </div>
                         <div class="form-group">
-                            {{ Form::text('lname','',array("class"=>"form-control input-md", "placeholder"=>"Last Name")); }}
+                            {{ Form::text('lname','',array("class"=>"form-control input-md", "id" => "signup_lname","placeholder"=>"Last Name")); }}
                         </div>
                     </div>
 
                     <div class="col-md-6 col-sm-6 col-xs-6">
                         <div class="form-group">
                             <i class=" glyphicon glyphicon-question-sign pull-right question" rel="tooltip" title="" data-placement="top" data-original-title="How you'll be known to UK Salon community. At least 5 chars"></i>
-                            {{ Form::text('profile_name','',array("class"=>"form-control", "placeholder"=>"Profile Name")); }}
+                            {{ Form::text('profile_name','',array("class"=>"form-control","id" => "signup_profile_name", "placeholder"=>"Profile Name")); }}
                         </div>
                         <div class="form-group">
                             <i class=" glyphicon glyphicon-question-sign pull-right question" rel="tooltip" title="" data-placement="top" data-original-title="Tell us where you're based and we'll help you find amazing venues nearby."></i>
-                            {{ Form::text('postal_code','',array("class"=>"form-control", "placeholder"=>"Post Code")); }}
+                            {{ Form::text('postal_code','',array("class"=>"form-control", "id" => "signup_postal_code","placeholder"=>"Post Code")); }}
                         </div>
                     </div>
 
@@ -271,23 +272,16 @@
                             <div class="row">
                                 <div class="radio-chck">
                                     <div class="radio_btn">
-                                        <input type="radio" value="F" name="gender" id="b1" checked>
+                                        <input type="radio" value="F" name="gender" id="gender_f" checked>
                                         <div id="a1"></div>
                                     </div>
                                     <span class="radio-yes">Female</span>
-
-
-
                                     <div class="radio_btn">
-                                        <input type="radio" value="M" name="gender" id="b2">
+                                        <input type="radio" value="M" name="gender" id="gender_m">
                                         <div id="a2"></div>
                                     </div>
                                     <span class="radio-no">Male</span>
-
                                 </div>
-
-
-
                             </div></div></div>
 
                     <div class="col-md-6 col-sm-6 col-xs-6">
@@ -313,7 +307,7 @@
             </div>
             <div class="modal-footer">
                 <p>Already have account ? <a href="#modal-signin" data-toggle="modal" data-target="#modal-signin"> Sign in here.</a></p>
-                <input id="signup_submit" type="submit" class="btn btn-warning btn-block btn-lg" value="Join">
+                <input id="signup_submit" type="button" class="btn btn-warning btn-block btn-lg" value="Join">
             </div>
             {{ Form::close() }}
         </div>
@@ -359,6 +353,12 @@
 
 
 <script src="{{ URL::asset('assets/js/jquery.js')}}"></script>
+<script>
+$(function(){
+    __base_url = "";
+    __base_url = "<?php echo url(); ?>";
+})
+</script>
 <script src="{{ URL::asset('assets/js/bootstrap.js')}}"></script>
 <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false&amp;language=en"></script>
 <script src="{{ URL::asset('assets/js/gmap3.min.js')}}"></script>
@@ -425,11 +425,7 @@
                 minTime: '8:00'
             });
     };
-
-
-
-
-
+    
 </script>
 
 <script type="text/javascript">

@@ -7,7 +7,7 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="heading-title heading-title-alt">
-                            <h3>Deep tissue massage within 3 miles of Brighton and Hove</h3>
+                            <!--h3>Deep tissue massage within 3 miles of Brighton and Hove</h3-->
                         </div>
                     </div>
                 </div>
@@ -16,7 +16,7 @@
                     <div class="col-md-4 col-sm-4 col-xs-3">
                   <!--    <a href="search.html" class="btn btn-default"><i class="fa fa-th"></i></a>
                   <a href="search_list.html" class="btn btn-warning"><i class="fa fa-list"></i></a>-->
-                  <span>Show <strong>3</strong> of <strong>30</strong> result.</span>
+                  <!--span>Show <strong>3</strong> of <strong>30</strong> result.</span-->
               </div>
               <div class="col-md-8 col-sm-8 col-xs-9">
                 <form class="form-inline" role="form">
@@ -58,10 +58,11 @@
                     <?php
                     if(isset($salon_listing) && count($salon_listing) > 0){
                         foreach($salon_listing as $salonKey => $salonVal){
+                            $salonAddress = $salonVal->getUser()->profile()->address;
                             ?>
                             <div class="property-content-list">
                                 <div class="property-image-list">
-                                    <img src="{{ $salonVal->profile_pic(); }}" alt="mikha real estate theme">
+                                    <img src="{{ URL::to('/assets/images/img13.jpg'); }}" alt="mikha real estate theme">
                                     <div class="property-price">
                                         <h4>Save</h4>
                                         <span>30%<small>/month</small></span>
@@ -78,7 +79,7 @@
                                     <h3><a href="#">
                                         {{  $salonVal->name; }}
 
-                                    </a> <small>{{ $salonVal->venue->address;  }}</small>
+                                    </a> <small>{{ $salonAddress;  }}</small>
                                     <span><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-o"></i><i class="fa fa-star-o"></i></span></h3>
                                     <p>
                                         {{  $salonVal->description; }}
@@ -90,9 +91,10 @@
                                 <tbody>
                                     <?php
                                     $services = $salonVal->service;
-                                    
+                                    $salon_user = $salonVal->getUser();
                                     foreach($services as $servicesKey => $servicesVal){
-                                        $duration  = date("H:i", strtotime($servicesVal->duration));
+                                        $service_id = $servicesVal->id;
+                                        $duration  = date("g:i", strtotime($servicesVal->duration));
                                         ?>
                                         <tr class="a-open-offer-popup" data-offer-id="653387" data-venue-id="285731" data-booking-options="{&quot;timeOfDay&quot;:&quot;&quot;,&quot;date&quot;:&quot;&quot;,&quot;bt&quot;:&quot;&quot;}">
                                             <td class="offer-title">
@@ -112,16 +114,37 @@
                                                         <span class="value">44% </span>
                                                     </span>
 
-                                                    <button class="button main-button mini-button">
+                                                    <button class="button main-button mini-button" data-toggle="modal" data-target="#modal-booking{{ $service_id; }}">
                                                         <span class="price ">
                                                             <span class="value">           
-                                                                <span class="price-currency">�</span><span class="price-integer">25</span>
+                                                                <span class="price-currency">&pound;</span><span class="price-integer">{{ $servicesVal->price; }}</span>
                                                             </span>
                                                         </span>
                                                     </button>
                                                 </span>
                                             </td>
                                         </tr>
+                                     
+                                        <!-- end:modal-open booking popup-1 -->
+                                        <div class="modal fade" id="modal-booking{{ $service_id; }}" tabindex="-1" role="dialog" aria-labelledby="modal-signin" aria-hidden="true">
+                                            <div class="modal-dialog modal-sm">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                        <h4 class="modal-title">{{ $servicesVal->title; }}</h4>
+                                                    </div>
+                                                    {{ Form::open(array('action' => 'UsersController@login')) }}
+                                                        Sevice Name : {{ $servicesVal->title; }} <br />
+                                                        Sevice Timing : {{ $duration; }} Hour <br />
+                                                        Sevice price : {{ $servicesVal->price; }} <br />
+                                                        Sevice description : {{ $servicesVal->description; }} <br />
+                                                        Address :  {{ $salonAddress; }}
+                                                    {{ Form::close() }}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- end:modal-open booking popup-1 -->
+
                                         <?php
                                     }
                                     ?>

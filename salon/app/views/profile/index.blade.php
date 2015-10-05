@@ -1,12 +1,27 @@
 <?php
 $gender = array("M" => "Male","F" => "Female");
 ?>
+<!-- begin:my-account -->
+<div class="my-account">
+   <div class="row">
+      <div class="col-md-4">
+         hhhhhhhhhhh
+      </div>
+      <div class="col-md-8">
+         hhhhhhhh
+      </div>
+   </div>
+</div>
 <div class="container">
    <div class="row">
       <div class="col-md-4 account-bg">
          <div class="row">
             <div class="col-md-12">
-               <img src="{{ Helper::user_profile_url($profile->profile_pic); }}" style="width:250px"/>
+                @if(isset($profile->profile_pic)  && $profile->profile_pic != "")
+                    <img src="{{ URL::to('/assets/images/profile_pic/'.$profile->profile_pic); }}" style="width:250px"/>
+                @else
+                    <img src="{{ URL::to('/assets/images/profile_pic/default.png'); }}"/>
+                @endif
                <!--img src="images/prfl-img.png"-->
                <div class="account-text">
                   <h3>{{ $user->full_name(); }}</h3>

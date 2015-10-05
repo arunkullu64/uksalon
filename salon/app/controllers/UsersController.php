@@ -66,7 +66,7 @@ class UsersController extends BaseController{
     
     public function login(){
         
-        $rules = array("email" => "required|email",
+        $rules = array("email" => "required",
                         "password" => "required"
                         );
         $validator = Validator::make(Input::All(),$rules);
@@ -178,7 +178,7 @@ class UsersController extends BaseController{
                 if(Input::hasFile('profile_pic')){
                     $profile_pic = Input::file('profile_pic');
                     //echo public_path();die;
-                    $imageUploadDir = Helper::user_profile_path();
+                    $imageUploadDir = public_path().'/assets/images/profile_pic/';
                     $profile_pic->move($imageUploadDir,$profile_pic->getClientOriginalName());
                     $profile_pic = $profile_pic->getClientOriginalName();;
                 }else{
@@ -253,7 +253,7 @@ class UsersController extends BaseController{
            // return View::make('search.listing')->with('data',$services);
            $result = array();
            foreach($venueFind as $venue => $venueVal){
-                $userBookings = $venueVal->business->user_booking();
+                $userBookings = $venueVal->business()->user_booking();
                 $last_query = DB::getQueryLog();
                 //echo "<pre>";print_r($last_query);die;
                 if(isset($userBookings) && count($userBookings) > 0){
@@ -262,12 +262,12 @@ class UsersController extends BaseController{
                     //echo $book_date.'<br>';
                     //echo $date1.'<br>';die;
                     if(!strtotime($date1) == strtotime($book_date)){
-                        $result[] = $venueVal->business;
+                        $result[] = $venueVal->business();
                     }
                 }else{
                     //show in listing
                    // echo "<pre>";print_r($venueVal);die;
-                    $result[] = $venueVal->business;
+                    $result[] = $venueVal->business();
                 }
            }
            $data['city'] = Venue::get_unique_city();

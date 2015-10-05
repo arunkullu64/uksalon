@@ -25,8 +25,4 @@ class Profile extends Eloquent implements UserInterface, RemindableInterface {
     {
         return $this->hasOne('User');
     }
-
-    public function profile_pic(){
-        return Helper::user_profile_url($this->profile_pic);
-    }
 }

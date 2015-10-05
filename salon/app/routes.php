@@ -23,9 +23,11 @@ Route::get('/profile',array('before'=>'auth','uses' => 'ProfileController@index'
 
 Route::post('/update',array('before'=>'auth','uses' => 'UsersController@update_profile'));
 
-route::post('/password',array('before' => 'csrf|auth','uses' => 'UsersController@change_password'));
+route::post('/password',array('before' => 'csrf','uses|auth' => 'UsersController@change_password'));
 
 Route::post('/search',array('before' => 'csrf' , 'uses' => 'UsersController@search'));
+
+Route::post('/ajax',array('before' => 'csrf' , 'uses' => 'AjaxController@signup_ajax'));
 
 Route::get('/search',function(){
 	return Redirect::to('/');

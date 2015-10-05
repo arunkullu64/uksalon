@@ -28,12 +28,6 @@ Route::group(array('prefix' => '/business/dashboard', 'before'=>'auth.salonowner
 		Route::post('/menu/save', array('before' => 'csrf','uses' =>'SalonDashboardController@save_menu'));
 
 		Route::post('/ajax', 'SalonDashboardController@ajax');
-
-		Route::get('/venue', 'SalonDashboardController@list_venue');
-
-        Route::post('/venue/save', array('before' => 'csrf','uses' =>'SalonDashboardController@save_venue'));
-
-        Route::post('/venue/images', array('before' => 'csrf','uses' =>'SalonDashboardController@extra_images'));
 		
 });
 
